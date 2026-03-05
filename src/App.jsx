@@ -4,12 +4,15 @@ import { Card, CardContent } from "./components/ui/card";
 import { Badge } from "./components/ui/badge";
 import { Calendar, Users, Briefcase, TrendingUp, Target, Zap, CheckCircle2, ArrowRight, BookOpen, Mic, Star, Award, PlayCircle, Video } from "lucide-react";
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
+import PopUp from "./components/PopUp";
+import WhatsAppBot from "./components/WhatsAppBot";
+import LeadForm from "./components/form";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import logo from "./assets/b7d3ac7bd9cd86ae14e5728a83d5cc97ab7a3e8b.png";
 import heroImage from "./assets/img2.jpg";
 import program1 from "./assets/img4.jpeg";
 import program2 from "./assets/img5.JPG";
-import section2Image from "./assets/section2-bg.jpeg";
+import section2Image from "./assets/1.JPG";
 import aiModelImage from "./assets/ai-model.png";
 import hire from "./assets/img7.JPG";
 
@@ -228,7 +231,8 @@ function ProgramCard({ program }) {
         </div>
 
         <div style={{ padding: "0 32px 32px" }}>
-          <motion.button
+          <motion.a
+            href="#lead-form"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             style={{ width: "100%", padding: "18px 24px", background: program.btnBg, color: program.btnColor, border: "none", borderRadius: "14px", fontSize: "16px", fontWeight: 700, fontFamily: "'DM Sans', sans-serif", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", transition: "filter 0.2s", letterSpacing: "0.01em" }}
@@ -236,7 +240,7 @@ function ProgramCard({ program }) {
             onMouseLeave={(event) => { event.currentTarget.style.filter = "brightness(1)"; }}
           >
             {program.cta} <ArrowRightIcon />
-          </motion.button>
+          </motion.a>
         </div>
       </div>
     </motion.div>
@@ -246,6 +250,9 @@ function ProgramCard({ program }) {
 export default function App() {
   return (
     <div className="min-h-screen bg-white">
+      <PopUp />
+      <WhatsAppBot />
+
       {/* Promotional Banner */}
       <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-3 px-6 overflow-hidden">
         <motion.div 
@@ -283,8 +290,8 @@ export default function App() {
             <a href="#programs" className="text-slate-600 hover:text-blue-600 transition-colors">Programs</a>
             <a href="#corporate" className="text-slate-600 hover:text-blue-600 transition-colors">Corporate</a>
           </div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-            Get Started
+          <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
+            <a href="#lead-form">Enroll Now</a>
           </Button>
         </div>
       </nav>
@@ -296,6 +303,22 @@ export default function App() {
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-indigo-200 rounded-full blur-3xl opacity-20"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
+          {/* <motion.div
+            initial={{ opacity: 0, y: -14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-8 flex justify-center lg:justify-start"
+          >
+            <div className="group inline-flex items-center gap-3 rounded-full border border-blue-200 bg-white/90 backdrop-blur px-4 py-2 shadow-lg shadow-blue-100/80">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-white">
+                <Zap className="w-4 h-4" />
+              </span>
+              <p className="text-sm md:text-base font-semibold text-slate-800">
+                Join <span className="text-blue-600">Personality Development Course</span>
+              </p>
+            </div>
+          </motion.div> */}
+
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Heading - Order 1 on mobile */}
             <motion.h1 
@@ -327,7 +350,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="absolute top-1 right-4 lg:right-0 z-20"
+                className="absolute top-1 right-1 lg:right-0 z-20"
               >
                 <div className="bg-white rounded-2xl shadow-xl p-4 border border-slate-200">
                   <div className="flex items-center gap-2">
@@ -440,9 +463,11 @@ export default function App() {
               </motion.div>
 
               <motion.div variants={fadeInUp}>
-                <Button size="lg" className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-lg px-10 py-7 rounded-full shadow-lg hover:shadow-xl transition-all">
-                  Enroll Now - It's FREE
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                <Button asChild size="lg" className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-lg px-10 py-7 rounded-full shadow-lg hover:shadow-xl transition-all">
+                  <a href="#lead-form">
+                    Enroll Now - It's FREE
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </a>
                 </Button>
               </motion.div>
 
@@ -688,8 +713,8 @@ export default function App() {
                       Personalized coaching programs focused on leadership communication and executive presence. 
                       One-on-one sessions designed to elevate your professional impact.
                     </p>
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
-                      Learn More
+                    <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
+                      <a href="#lead-form">Learn More</a>
                     </Button>
                   </CardContent>
                   <div className="relative h-64 md:h-auto ">
@@ -730,8 +755,8 @@ export default function App() {
                       Bootcamps and masterclasses designed to develop confidence and communication clarity. 
                       Immersive learning experiences with real-time practice.
                     </p>
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
-                      View Schedule
+                    <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
+                      <a href="#lead-form">View Schedule</a>
                     </Button>
                   </CardContent>
                 </div>
@@ -756,8 +781,8 @@ export default function App() {
                       Digital courses and structured leadership frameworks. Access curated content and proven 
                       methodologies at your own pace.
                     </p>
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
-                      Browse Resources
+                    <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
+                      <a href="#lead-form">Browse Resources</a>
                     </Button>
                   </CardContent>
                   <div className="relative h-64 md:h-auto">
@@ -797,8 +822,8 @@ export default function App() {
                       Professional moderation, event hosting, and leadership speaking engagements. 
                       Bring award-winning expertise to your next event.
                     </p>
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
-                      Book Mridu
+                    <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white w-fit">
+                      <a href="#lead-form">Book Mridu</a>
                     </Button>
                   </CardContent>
                 </div>
@@ -989,9 +1014,11 @@ export default function App() {
               <p className="text-lg text-slate-300 leading-relaxed">
                 Programs focus on executive communication, leadership presence, team confidence, and strategic thinking.
               </p>
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-6">
-                <Briefcase className="w-5 h-5 mr-2" />
-                Book Corporate Training
+              <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-6">
+                <a href="#lead-form">
+                  <Briefcase className="w-5 h-5 mr-2" />
+                  Book Corporate Training
+                </a>
               </Button>
             </motion.div>
             <motion.div 
@@ -1010,6 +1037,8 @@ export default function App() {
         </div>
       </section>
 
+      <LeadForm />
+
       {/* Final CTA Section */}
       <section className="py-24 px-6 bg-gradient-to-br from-blue-600 to-blue-700 text-white">
         <motion.div 
@@ -1025,13 +1054,17 @@ export default function App() {
             Join professionals preparing to strengthen their communication, leadership presence, and career clarity with MentorLeap and MISHA.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-6">
-              <Calendar className="w-5 h-5 mr-2" />
-              Join Free Course
+            <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-6">
+              <a href="#lead-form">
+                <Calendar className="w-5 h-5 mr-2" />
+                Join Free Course
+              </a>
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-white text-white bg-white/10 text-lg px-8 py-6">
-              Register for Bootcamp
-              <ArrowRight className="w-5 h-5 ml-2" />
+            <Button asChild size="lg" variant="outline" className="border-2 border-white text-white bg-white/10 text-lg px-8 py-6">
+              <a href="#lead-form">
+                Register for Bootcamp
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </a>
             </Button>
           </div>
           <div className="pt-8 flex flex-col sm:flex-row justify-center gap-6 text-blue-100">
@@ -1062,4 +1095,3 @@ export default function App() {
     </div>
   );
 }
-
