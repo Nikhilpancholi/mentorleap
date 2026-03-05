@@ -370,7 +370,7 @@ export default function App() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.7, duration: 0.6 }}
-                className="absolute top-32 left-0 lg:-left-8 z-20"
+                className="absolute hidden md:block top-32 left-0 lg:-left-8 z-20"
               >
                 <div className="bg-white rounded-2xl shadow-xl p-4 border border-slate-200">
                   <div className="flex items-center gap-3">
@@ -390,7 +390,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.6 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+                className="absolute bottom-2 md:bottom-8 left-1/2 -translate-x-1/2 z-20"
               >
                 <div className="bg-white rounded-2xl shadow-xl px-6 py-3 border border-slate-200">
                   <p className="text-center">
