@@ -8,10 +8,10 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import logo from "./assets/b7d3ac7bd9cd86ae14e5728a83d5cc97ab7a3e8b.png";
 import heroImage from "./assets/img2.jpg";
 import program1 from "./assets/img4.jpeg";
-import program2 from "./assets/img2.jpg";
+import program2 from "./assets/img5.JPG";
 import section2Image from "./assets/section2-bg.jpeg";
 import aiModelImage from "./assets/ai-model.png";
-import hire from "./assets/img7.jpg";
+import hire from "./assets/img7.JPG";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
